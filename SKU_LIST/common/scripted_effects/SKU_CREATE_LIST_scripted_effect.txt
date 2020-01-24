@@ -1,0 +1,91 @@
+flags_rep = {
+#	SKU_FLAG = { setflag = 	"SKU_LIST_ERROR:$error_type$" 	}
+#	SKU_FLAG = { setflag = 	"SKU_FALLBACK_FLAG"				}
+#	SKU_FLAG = { setflag = "SKU_FALLBACK_FLAG"				}
+#	SKU_FLAG = {$
+#	SKU_FLAG = {$
+#	SKU_FLAG = {$
+#	SKU_FLAG = {$
+#	SKU_FLAG = {$
+#	SKU_FLAG = {$
+#	SKU_FLAG = {$
+#	SKU_FLAG = {$
+}
+
+
+assign_ID = {
+	if = {
+		limit = {
+#			SKU_FLAG = { has_flag = "SKU_FALLBACK_FLAG" }
+		}
+#		SKU_FLAG = { remove_flag = "SKU_FALLBACK_FLAG" }
+	}
+	inverted_switch = {
+		trigger = $trigger$
+		"$string$:$cycle|0$0" = { $return$ = "$string$:$cycle|0$0" }
+		"$string$:$cycle|0$1" = { $return$ = "$string$:$cycle|0$1" }
+		"$string$:$cycle|0$2" = { $return$ = "$string$:$cycle|0$2" }
+		"$string$:$cycle|0$3" = { $return$ = "$string$:$cycle|0$3" }
+		"$string$:$cycle|0$4" = { $return$ = "$string$:$cycle|0$4" }
+		"$string$:$cycle|0$5" = { $return$ = "$string$:$cycle|0$5" }
+		"$string$:$cycle|0$6" = { $return$ = "$string$:$cycle|0$6" }
+		"$string$:$cycle|0$7" = { $return$ = "$string$:$cycle|0$7" }
+		"$string$:$cycle|0$8" = { $return$ = "$string$:$cycle|0$8" }
+		"$string$:$cycle|0$9" = { $return$ = "$string$:$cycle|0$9" }
+		"SKU_FALLBACK_FLAG" = {
+			if = {
+				limit = { is_outside_limit = { limit = @max_List:_limit max = "$cycle$0" } }
+				SKU_LIST_ERROR = { error_type = exceeded_list_limit }
+			}
+			else = {
+				change_variable = {
+					which = cycle
+					value = 1
+				}
+			assign_ID = yes
+			}
+			break = yes
+		}
+	}
+	set_variable = {
+		which = cycle
+		value = 0
+	}
+}
+
+
+SKU_LIST_ERROR = {
+	log = "SKU:=============================="
+	log = "Instance of SKU_LIST failed"
+	log = "SKU_LIST = { [SKU_GetArguments] } "
+	log = "-type: $error_type$"
+	log = "-description: [SKU_LIST:GetErrorDescription]"
+	log = "-info: [SKU_LIST:GetErrorInfo]"
+	log = "-info: [SKU_LIST:GetErrorInfo2]"
+	log = "=================================="
+}
+
+
+
+
+SKU_FLAG = {
+	switch = {
+		trigger = check_variable
+		@$string$ = {	}
+	}
+	switch = {
+		trigger 		= is_scope_type
+		ambient_object	= {	$action$_ambient_object_flag 	= $flag$ }
+		country 		= { $action$_country_flag 			= $flag$ }
+		fleet 			= {	$action$_fleet_flag 			= $flag$ }
+		leader 			= {	$action$_leader_flag 			= $flag$ }
+		megastructure	= {	$action$_megastructure_flag 	= $flag$ }
+		planet 			= {	$action$_planet_flag 			= $flag$ }
+		pop 			= {	$action$_pop_flag 				= $flag$ }
+		relation 		= {	$action$_relation_flag 			= $flag$ }
+		ship 			= {	$action$_ship_flag 				= $flag$ }
+		star 			= {	$action$_star_flag 				= $flag$ }
+		pop_faction 	= {	$action$_pop_faction_flag 		= $flag$ }
+		species 		= {	$action$_species_flag 			= $flag$ }
+	}
+}
