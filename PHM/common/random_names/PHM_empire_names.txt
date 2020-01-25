@@ -1,0 +1,25 @@
+############################## Primitives ##############################
+
+empire_name_parts_list = {
+	key = "PHM_primitive_hive_names"
+	parts = {
+		"Unity" = 1
+	}
+}
+
+empire_name_format = {
+	random_weight = {
+		factor = 0
+		modifier = {
+			add = 10000
+			OR = {
+				has_government = "PHM_gov_tribal_society"
+				has_government = "PHM_gov_feudal_realms"
+				has_government = "PHM_gov_fragmented_nation_states"
+			}
+		}
+	}
+	format = "format.PHM_primitive.1"
+	noun = "[This.GetSpeciesName]"
+	# Human Civilization
+}

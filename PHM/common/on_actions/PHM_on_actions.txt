@@ -1,0 +1,27 @@
+# Triggers when a Special Project to uplift a pre-sapient species is completed.
+# Note that this will trigger once for each combination of planet & original
+# species (but for uplifting this should be only once).
+#
+# Scope = planet_event
+# This = planet scope
+# From = uplifted species (pre-modification)
+on_uplift_completion = {
+	events = {
+		EXAMPLE.1
+		EXAMPLE.1
+		EXAMPLE.1
+		EXAMPLE.1
+		EXAMPLE.1
+		EXAMPLE.1
+		EXAMPLE.1
+	}
+}
+
+
+# A pop has been added to the planet
+# Root = pop
+# From = planet
+on_pop_added = {
+	events = {
+	}
+}

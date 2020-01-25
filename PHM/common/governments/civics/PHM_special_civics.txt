@@ -1,0 +1,66 @@
+# primitive_hive Civilizations
+PHM_civic_emerging_hives = {
+	modification = no
+	icon = "gfx/interface/icons/governments/authorities/auth_hive_mind.dds"
+	potential = {
+		country_type = { value = primitive }
+		ethics = { value = ethic_gestalt_consciousness } 
+	}
+	random_weight = { base = 5 }
+	modifier = { }
+}
+
+PHM_civic_rapid_growth = {
+	modification = no
+	icon = "gfx/interface/icons/governments/authorities/auth_hive_mind.dds"
+	potential = {
+		country_type = { value = primitive }
+		ethics = { value = ethic_gestalt_consciousness } 
+	}
+	random_weight = { base = 5 }
+	modifier = { }
+}
+
+PHM_civic_competing_hives = {
+	modification = no
+	icon = "gfx/interface/icons/governments/authorities/auth_hive_mind.dds"
+	potential = {
+		country_type = { value = primitive }
+		ethics = { value = ethic_gestalt_consciousness } 
+	}
+	random_weight = { base = 5 }
+	modifier = { }
+}
+
+PHM_civic_one_world_theory = {
+	modification = no
+	icon = "gfx/interface/icons/governments/authorities/auth_hive_mind.dds"
+	potential = {
+		country_type = { value = primitive }
+		ethics = { value = ethic_gestalt_consciousness } 
+	}
+	random_weight = { base = 5 }
+	modifier = { }
+}
+
+PHM_civic_ever_dominating = {
+	modification = no
+	icon = "gfx/interface/icons/governments/authorities/auth_hive_mind.dds"
+	potential = {
+		country_type = { value = primitive }
+		ethics = { value = ethic_gestalt_consciousness } 
+	}
+	random_weight = { base = 5 }
+	modifier = { }
+}
+
+PHM_civic_ever_prospecting = {
+	modification = no
+	icon = "gfx/interface/icons/governments/authorities/auth_hive_mind.dds"
+	potential = {
+		country_type = { value = primitive }
+		ethics = { value = ethic_gestalt_consciousness } 
+	}
+	random_weight = { base = 5 }
+	modifier = { }
+}

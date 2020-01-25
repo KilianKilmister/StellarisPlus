@@ -1,0 +1,595 @@
+
+namespace = uplift
+
+# Hidden event firing two random ethics events
+# FROMFROM = uplifted species
+# FROM = planet
+planet_event = {
+	id = uplift.7199
+	location = FROM
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				fromfrom = {
+					has_trait = PHM_trait_presapient_hive_mind
+				}
+			}
+			#planet_event = { id = uplift.10001 days = 10 }
+			#
+			
+
+			#
+		}
+		else = {
+			random_list = {
+				30 = { planet_event = { id = uplift.7000 days = 30 } }
+				70 = { planet_event = { id = uplift.7010 days = 30 } }
+			}
+			random_list = {
+				15 = {
+					planet_event = { id = uplift.7200 days = 60 }
+					planet_event = { id = uplift.7205 days = 120 }
+				}
+				15 = {
+					planet_event = { id = uplift.7200 days = 120 }
+					planet_event = { id = uplift.7210 days = 60 }
+				}
+				15 = {
+					planet_event = { id = uplift.7200 days = 60 }
+					planet_event = { id = uplift.7215 days = 120 }
+				}
+				15 = {
+					planet_event = { id = uplift.7205 days = 60 }
+					planet_event = { id = uplift.7210 days = 120 }
+				}
+				15 = {
+					planet_event = { id = uplift.7205 days = 120 }
+					planet_event = { id = uplift.7215 days = 60 }
+				}
+				15 = {
+					planet_event = { id = uplift.7210 days = 60 }
+					planet_event = { id = uplift.7215 days = 120 }
+				}
+			
+			}
+		}
+	}
+}
+
+
+
+# FROMFROMFROM = uplifted species
+planet_event = {
+	id = uplift.10001
+	location = FROM
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+		any_pop = {
+			has_trait = trait_uplifted
+			has_trait = PHM_trait_presapient_hive_mind
+			NOT = {
+				has_trait = trait_hive_mind
+			}
+		}
+	}
+
+	immediate = {
+		every_owned_pop = {
+			limit = { has_trait = PHM_trait_presapient_hive_mind NOT = { has_pop_flag = upl_ethic_spimat } }
+			pop_change_ethic = "ethic_gestalt_consciousness"
+			set_pop_flag = upl_ethic_spimat
+		}
+		every_owned_pop = {
+			#add propper hive mind trait
+			limit = { has_trait = trait_uplifted has_trait = PHM_trait_presapient_hive_mind NOT = { has_trait = trait_hive_mind } }
+			modify_species = {
+				add_trait = trait_hive_mind
+			}
+			set_pop_flag = PHM_uplifted_hive
+			species = { save_event_target_as = PHM_uplifted_hive }
+		}
+		if = {
+			limit = { owner = { is_hive_empire = no } }
+			planet_event = {
+				id = uplift.10010
+			}
+		}
+	}
+}
+
+# non-hive uplifts hive
+# FROMFROMFROMFROM = uplifted species
+planet_event = {
+	id = uplift.10010
+	title = "uplift.10010.name"
+	desc = "uplift.10010.desc"
+	picture = GFX_evt_society_research
+	location = root
+	show_sound = event_cityscape
+
+	is_triggered_only = yes
+
+	trigger = {
+		log = "uplift.10010 trigger"
+		always = no
+	}
+
+	immediate = {
+		log = "uplift.10010 effect"
+		owner = { 
+			save_event_target_as = PHM_uplifter 
+		}
+		save_event_target_as = PHM_uplifter_planet
+		set_variable = {
+			which = potential_hive_home
+			value = 0
+		}
+		set_variable = {
+			which = potential_hive_study
+			value = 0
+		}
+		#make list of possible homes
+		log = "- List of objects: -"
+		log = "Source [This.GetName] (not in list)"
+		every_planet = {
+			limit = {
+				distance_to_empire = {
+					who = event_target:PHM_uplifter
+					distance = 100
+				}
+				has_owner = no
+				solar_system = {
+				#	is_surveyed = {
+				#		who = event_target:PHM_uplifter
+				#		status = yes
+				#	}
+				}
+				habitability = {
+					who = event_target:PHM_uplifted_hive
+					value > 0.6
+				}
+			}
+			set_planet_flag = F_potential_hive_home@prev
+			event_target:PHM_uplifter_planet = {
+				change_variable = {
+					which = potential_hive_home
+					value = 1
+				}
+			}
+			set_variable = {
+				which = potential_hive_home
+				value = event_target:PHM_uplifter_planet
+			}
+			set_variable = {
+				which = potential_hive_home@prev
+				value = 1
+			}
+			log = "- [This.GetName]"
+		}
+		random_planet ={
+			limit = {
+				has_planet_flag = F_potential_hive_home
+				check_variable = {
+					which = potential_hive_home
+					value = 1
+				}
+			}
+			save_event_target_as = EVENT_LOCATION
+		}
+	}
+
+	#give freedom
+	option = {
+		name = "uplift.10010.a"
+		custom_tooltip = "uplift.10010.a.tooltip"
+		#not allowed if none found
+		allow = {
+			hidden_trigger = {
+				check_variable = {
+					which = potential_hive_home
+					value > 0
+				}
+			}
+			fail_text = {
+				text = "no_target_found"
+			}
+		}
+		hidden_effect = {
+			#reset count
+			set_variable = {
+				which = current_count
+				value = 1
+			}
+			planet_event = {
+				id = uplift.10012
+			}
+		}
+	}
+
+	
+	#study
+	option = {
+		name = "uplift.10010.b"
+		custom_tooltip = "uplift.10010.b.tooltip"
+		allow = {
+			check_variable = {
+				which = potential_hive_home
+				value > 0
+			}
+			fail_text = {
+				text = "no_target_found"
+			}
+		}
+		hidden_effect = {
+			#planet select
+			#planet_event = { id = uplift.10013 }
+
+		}
+	}
+	
+	#sell
+		option = {
+		name = "uplift.10010.c"
+		custom_tooltip = "uplift.10010.c.tooltip"
+		hidden_effect = {
+
+		}
+	}
+}
+
+#return
+planet_event = {
+	id = uplift.10011
+	title = "uplift.10010.name"
+	desc = "uplift.10010.desc"
+	picture = GFX_evt_society_research
+	location = root
+
+	is_triggered_only = yes
+
+	trigger = {
+		log = "uplift.10010 trigger"
+		always = no
+	}
+
+	immediate = {
+		log = "uplift.10010 effect"
+		random_planet ={
+			limit = {
+				has_planet_flag = F_potential_hive_home
+				check_variable = {
+					which = potential_hive_home
+					value = 1
+				}
+			}
+			save_event_target_as = EVENT_LOCATION
+		}
+		
+	}
+
+	#give freedom
+	option = {
+		name = "uplift.10010.a"
+		custom_tooltip = "uplift.10010.a.tooltip"
+		#not allowed if none found
+		allow = {
+			check_variable = {
+				which = potential_hive_home
+				value > 0
+			}
+			fail_text = {
+				text = "no_target_found"
+			}
+		}
+		hidden_effect = {
+			#reset count
+			set_variable = {
+				which = current_count
+				value = 1
+			}
+			planet_event = {
+				id = uplift.10012
+			}
+		}
+	}
+
+	
+	#study
+	option = {
+		name = "uplift.10010.b"
+		custom_tooltip = "uplift.10010.b.tooltip"
+		allow = {
+			check_variable = {
+				which = potential_hive_study
+				value > 0
+			}
+			fail_text = {
+				text = "no_target_found"
+			}
+		}
+		hidden_effect = {
+			#planet select
+			#planet_event = { id = uplift.10013 }
+
+		}
+	}
+
+	#sell
+		option = {
+		name = "uplift.10010.c"
+		custom_tooltip = "uplift.10010.c.tooltip"
+		hidden_effect = {
+
+		}
+	}
+}
+
+#event to cicle through planets
+planet_event = {
+	id = uplift.10012
+	title = "uplift.10012.name"
+	desc = "uplift.10012.desc"
+	picture = GFX_evt_society_research
+	location = event_target:EVENT_LOCATION
+
+	is_triggered_only = yes
+
+	trigger = {
+	}
+
+	immediate = {
+		if = {
+			limit = {
+				check_variable = {
+					which = current_count
+					value = potential_hive_home
+				}
+			}
+			set_variable = { #call special desc for this case
+				which = current_count
+				value = 1
+			}
+		}
+		else = {
+			change_variable = {
+				which = current_count
+				value = 1
+			}
+		}
+		every_planet = {
+			limit = {
+				has_planet_flag = F_potential_hive_home
+			}
+			set_variable = {
+				which = current_count
+				value = event_target:PHM_uplifter_planet
+			}
+			set_variable = { #call special desc for this case
+				which = number
+				value = current_count 
+				
+			}
+			subtract_variable = { #call special desc for this case
+				which = number
+				value = 1
+			}
+		}
+	}
+
+	#next planet
+	option = {
+		name = "uplift.10012.a"
+		custom_tooltip = "uplift.10012.a.tooltip"
+		hidden_effect = {
+			random_planet ={
+				limit = {
+					has_planet_flag = F_potential_hive_home
+					check_variable = {
+						which = potential_hive_home
+						value = current_count
+					}
+				}
+				if = {
+					limit = { 
+						event_target:PHM_uplifter_planet = {
+							check_variable = {
+								which = current_count
+								value > potential_hive_home
+							}
+						}
+					} 
+					event_target:PHM_uplifter_planet = {
+						set_variable = {
+							which = current_count
+							value = 1
+						}
+					}
+				}
+				save_event_target_as = EVENT_LOCATION
+			}
+			planet_event = {
+				id = uplift.10012
+			}
+		}
+	}
+	#confirm
+	option = {
+		name = "uplift.10012.b"
+		custom_tooltip = "uplift.10012.b.tooltip"
+		hidden_effect = {
+			save_event_target_as = PHM_uplifted_hive_home
+			####REMOVE FLAGS
+		}
+	}
+	#return
+	option = {
+		name = "uplift.10012.c"
+		custom_tooltip = "uplift.10012.c.tooltip"
+		hidden_effect = {
+			event_target:PHM_uplifter_planet = {
+				planet_event = {
+					id = uplift.10011
+				}
+			}
+		}
+	}
+}
+
+#create empire with uplifted system
+planet_event = {
+	id = uplift.10020
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	trigger = {
+	}
+
+	immediate = {
+		event_target:PHM_uplifted_hive_home = {
+			create_country = {
+				name = random
+				authority = auth_hive_mind
+				flag = random
+				type = default
+				civics = random
+				species = event_target:PHM_uplifted_hive
+				ethos = { ethic = ethic_gestalt_consciousness }
+				ignore_initial_colony_error = yes
+				
+				effect = {
+					set_subject_of = {
+						who = event_target:PHM_uplifter
+						subject_type = protectorate
+					}
+					add_opinion_modifier = {
+						modifier = opinion_ceded_starbase
+						who = event_target:PHM_uplifter
+					}
+					set_country_flag = PHM_uplifted_hive
+					add_resource = {
+						energy = 500
+						minerals = 1000 # enough for a spaceport and then some
+					}
+					if = {
+						limit = {
+							capital_scope = { is_planet_class = pc_ringworld_habitable } 
+						}
+						# hope you find some mineral deposits out in the void. Here's an extra subsidy to tide you over until the resource shortages cripple you.
+						add_resource = {
+							energy = 1000
+							food = 1000
+							minerals = 1000
+							alloys = 1000
+							volatile_motes = 500
+							exotic_gases = 500
+							rare_crystals = 500
+						}
+					}
+					add_resource = { influence = 300 }
+				}
+			}
+			solar_system = {
+				create_starbase = {
+					size = starbase_starport
+					owner = last_created_country
+				}
+				every_system_planet = {
+					limit = {
+						has_deposit_for = shipclass_mining_station
+						has_mining_station = no
+					}
+					create_mining_station = {
+						owner = last_created_country
+					}
+				}
+			}
+			create_colony = {
+				owner = last_created_country
+			}
+			set_capital = yes
+			clear_blockers = yes
+			while = {
+				limit = { 
+					num_pops < 15
+					#free_housing > 0
+				}
+				create_pop = {
+					species = owner
+				}
+			}
+			
+			remove_building = building_colony_shelter
+			add_building = building_hive_capital
+			
+			if = {
+				limit = { NOT = { is_planet_class = pc_ringworld_habitable } }
+				add_district = district_city
+				add_district = district_city
+				add_district = district_city
+				add_district = district_city
+				add_district = district_farming
+				add_district = district_farming
+				add_district = district_farming
+				add_district = district_mining
+				add_district = district_mining
+				add_district = district_generator
+				add_district = district_generator
+
+				add_building = building_research_lab_1
+				add_building = building_foundry_1
+				add_building = building_factory_1
+			}
+			if = {
+				limit = { is_planet_class = pc_ringworld_habitable }
+				add_district = district_rw_city
+				add_district = district_rw_farming
+				
+				add_building = building_foundry_1
+			}
+			validate_planet_buildings_and_districts = yes
+		}
+	}
+}
+
+
+#dummy
+#create empire with uplifted system
+planet_event = {
+	id = uplift.10020
+	id = uplift.10012
+	title = "uplift.10012.name"
+	desc = "uplift.10012.desc"
+	picture = GFX_evt_society_research
+	location = event_target:EVENT_LOCATION
+
+	is_triggered_only = yes
+
+	trigger = {
+	}
+
+	immediate = {
+	}
+
+	trigger = {
+	}
+	
+	immediate ={
+
+	}
+	
+	option = {
+		name = "uplift.10012.a"
+		custom_tooltip = "uplift.10012.a.tooltip"
+	}
+}
+
+
+

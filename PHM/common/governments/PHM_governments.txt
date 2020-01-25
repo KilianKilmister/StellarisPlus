@@ -1,0 +1,50 @@
+# Tribal Society
+PHM_gov_tribal_society = {
+	ruler_title = RT_HIVE_MIND
+	ruler_title_female = RT_HIVE_MIND_FEMALE
+	
+	should_force_rename = yes
+
+	possible = {
+		has_valid_civic = PHM_civic_emerging_hives
+		has_valid_civic = PHM_civic_rapid_growth
+	}
+
+	weight = {
+		base = 1000000
+	}
+}
+
+# Feudal Realms
+PHM_gov_feudal_realms = {
+	ruler_title = RT_HIVE_MIND
+	ruler_title_female = RT_HIVE_MIND_FEMALE
+	
+	should_force_rename = yes
+
+	possible = {
+		has_valid_civic = PHM_civic_competing_hives
+		has_valid_civic = PHM_civic_one_world_theory
+	}
+
+	weight = {
+		base = 1000000
+	}
+}
+
+# Fragmented Nation States
+PHM_gov_fragmented_nation_states = {
+	ruler_title = RT_HIVE_MIND
+	ruler_title_female = RT_HIVE_MIND_FEMALE
+	
+	should_force_rename = yes
+
+	possible = {
+		has_valid_civic = PHM_civic_ever_dominating
+		has_valid_civic = PHM_civic_ever_prospecting
+	}
+
+	weight = {
+		base = 1000000
+	}
+}

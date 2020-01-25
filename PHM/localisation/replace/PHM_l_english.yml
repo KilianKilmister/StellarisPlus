@@ -1,0 +1,20 @@
+﻿l_english:
+
+
+ no_target_found:0 "No target found."
+
+ uplift.10010.name:0 "The discovery of existencial dread"
+ uplift.10010.desc:0 "REPLACE_ME"
+ uplift.10010.a:0 "Give it a domain."
+ uplift.10010.a.tooltip:0 "Avalable Planets: [This.potential_hive_home]\nDEBUG:[EVENT_LOCATION.GetName]"
+ uplift.10010.b:0 "Study it in the safety of our borders"
+ uplift.10010.b.tooltip:0 "Avalable Planets: [This.potential_hive_study]"
+
+ uplift.10012.name:0 "[EVENT_LOCATION.GetName]"
+ uplift.10012.desc:0 "#[EVENT_LOCATION.number] out of [PHM_uplifter_planet.potential_hive_home] total"
+ uplift.10012.a:0 "Next"
+ uplift.10012.a.tooltip:0 "#[EVENT_LOCATION.number] out of [PHM_uplifter_planet.potential_hive_home] total"
+ uplift.10012.b:0 "Confirm"
+ uplift.10012.b.tooltip:0 "REPLACE_ME"
+ uplift.10012.c:0 "Return"       
+ uplift.10012.c.tooltip:0 "REPLACE_ME"

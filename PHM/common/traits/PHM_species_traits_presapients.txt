@@ -1,0 +1,17 @@
+PHM_trait_presapient_hive_mind = {
+	
+	cost = 1
+	sorting_priority = 20
+	initial = no
+	sapient = no
+	modification = no
+	forced_happiness = yes
+	icon = "gfx/interface/icons/traits/PHM_trait_presapient_hive_mind.dds"
+	allowed_archetypes = { BIOLOGICAL PRESAPIENT LITHOID }
+	modifier = {
+		pop_growth_speed = 0.10
+		army_damage_mult = 0.20
+		planet_jobs_worker_produces_mult = 0.025
+		pop_housing_usage_mult = -0.1
+	}
+}

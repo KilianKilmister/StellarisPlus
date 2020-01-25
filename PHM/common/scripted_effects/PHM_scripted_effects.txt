@@ -1,0 +1,707 @@
+PHM_generate_primitive_hive_on_planet = {
+	PHM_create_primitive_hive_species = yes
+	PHM_create_primitive_hive_empire = yes
+	PHM_setup_primitive_hive_planet = yes
+}
+
+PHM_generate_early_primitive_hive_on_planet = {
+	PHM_create_primitive_hive_species = yes
+	PHM_create_early_primitive_hive_empire = yes
+	PHM_setup_primitive_hive_planet = yes
+}
+
+PHM_generate_late_primitive_hive_on_planet = {
+	PHM_create_primitive_hive_species = yes
+	PHM_create_late_primitive_hive_empire = yes
+	PHM_setup_primitive_hive_planet = yes
+}
+
+PHM_create_primitive_hive_species = {
+
+	create_species = {
+		name = random
+		class = random_non_machine
+		portrait = random
+		homeworld = THIS
+		traits = {
+			trait = random_traits
+			trait = trait_hive_mind
+		}
+	}
+	last_created_species = {	
+		if = {
+			limit = {
+				OR = {
+				is_species_class = HUM
+				is_species_class = MAM
+				is_species_class = REP
+				is_species_class = AVI
+				}
+			}
+			random = {
+				chance = 25
+				PHM_create_primitive_hive_species = yes
+			}
+		}
+	}
+}
+
+PHM_create_early_primitive_hive_empire = {
+	create_country = {
+		name = random
+		authority = auth_hive_mind
+		civics = {
+			civic = PHM_civic_competing_hives
+			civic = PHM_civic_one_world_theory
+		}
+		species = last_created
+		ethos = random
+		flag = {
+			icon = {
+				category = "special"
+				file = "primitive.dss"
+			}
+			background = {
+				category = "backgrounds"
+				file = "new_dawn.dds"
+			}
+			colors = {
+				"turquoise"
+				"green"
+				"null"
+				"null"
+			}
+		}
+		#type = PHM_primitive_hive
+		type = primitive
+	}
+	last_created_country = {
+		set_graphical_culture = preindustrial_01
+		random_list = {
+			20 = {
+				set_country_flag = PHM_stone_age
+				set_primitive_age = PHM_stone_age
+				change_government = {
+					authority = auth_hive_mind
+					civics = {
+						civic = PHM_civic_emerging_hives
+						civic = PHM_civic_rapid_growth
+					}
+				}
+			}
+			20 = {
+				set_country_flag = PHM_bronze_age
+				set_primitive_age = PHM_bronze_age
+				change_government = {
+					authority = auth_hive_mind
+					civics = {
+						civic = PHM_civic_emerging_hives
+						civic = PHM_civic_rapid_growth
+					}
+				}
+				change_country_flag = {
+					icon = {
+						category = "special"
+						file = "primitive.dss"
+					}
+					background = {
+						category = "backgrounds"
+						file = "new_dawn.dds"
+					}
+					colors = {
+						"green"
+						"dark_green"
+						"null"
+						"null"
+					}
+				}
+			}
+			20 = {
+				set_country_flag = PHM_iron_age
+				set_primitive_age = PHM_iron_age
+				change_country_flag = {
+					icon = {
+						category = "special"
+						file = "primitive.dss"
+					}
+					background = {
+						category = "backgrounds"
+						file = "new_dawn.dds"
+					}
+					colors = {
+						"purple"
+						"dark_purple"
+						"null"
+						"null"
+					}
+				}
+			}
+			20 = {
+				set_country_flag = PHM_late_medieval_age
+				set_primitive_age = PHM_late_medieval_age
+				change_country_flag = {
+					icon = {
+						category = "special"
+						file = "primitive.dss"
+					}
+					background = {
+						category = "backgrounds"
+						file = "new_dawn.dds"
+					}
+					colors = {
+						"light_blue"
+						"blue"
+						"null"
+						"null"
+					}
+				}
+			}
+			20 = {
+				set_country_flag = PHM_renaissance_age
+				set_primitive_age = PHM_renaissance_age
+				change_country_flag = {
+					icon = {
+						category = "special"
+						file = "primitive.dss"
+					}
+					background = {
+						category = "backgrounds"
+						file = "new_dawn.dds"
+					}
+					colors = {
+						"pink"
+						"burgundy"
+						"null"
+						"null"
+					}
+				}
+			}
+			20 = {
+				set_country_flag = PHM_steam_age
+				set_primitive_age = PHM_steam_age
+				change_country_flag = {
+					icon = {
+						category = "special"
+						file = "primitive.dss"
+					}
+					background = {
+						category = "backgrounds"
+						file = "new_dawn.dds"
+					}
+					colors = {
+						"orange"
+						"red"
+						"null"
+						"null"
+					}
+				}
+			}
+		}
+	}
+}
+
+PHM_create_late_primitive_hive_empire = {
+	create_country = {
+		name = random
+		authority = auth_hive_mind
+		civics = {
+			civic = PHM_civic_ever_dominating
+			civic = PHM_civic_ever_prospecting
+		}
+		species = last_created
+		ethos = random
+		flag = {
+			icon = {
+				category = "spherical"
+				file = "flag_spherical_22.dds"
+			}
+			background = {
+				category = "backgrounds"
+				file = "new_dawn.dds"
+			}
+			colors = {
+				"turquoise"
+				"green"
+				"null"
+				"null"
+			}
+		}
+		#type = PHM_primitive_hive
+		type = primitive
+	}
+	last_created_country = {
+		set_graphical_culture = industrial_01
+		random = { 
+			chance = 10
+			set_country_flag = PHM_hive_world
+		}
+		random_list = {
+			25 = {
+				set_country_flag = PHM_industrial_age
+				set_primitive_age = PHM_industrial_age
+				change_country_flag = {
+					icon = {
+						category = "special"
+						file = "primitive.dss"
+					}
+					background = {
+						category = "backgrounds"
+						file = "new_dawn.dds"
+					}
+					colors = {
+						"beige"
+						"yellow"
+						"null"
+						"null"
+					}
+				}
+			}
+			25 = {
+				set_country_flag = PHM_machine_age
+				set_primitive_age = PHM_machine_age
+				change_country_flag = {
+					icon = {
+						category = "special"
+						file = "primitive.dss"
+					}
+					background = {
+						category = "backgrounds"
+						file = "new_dawn.dds"
+					}
+					colors = {
+						"yellow"
+						"orange"
+						"null"
+						"null"
+					}
+				}
+			}
+			25 = {
+				set_country_flag = PHM_atomic_age
+				set_primitive_age = PHM_atomic_age
+				change_country_flag = {
+					icon = {
+						category = "special"
+						file = "primitive.dss"
+					}
+					background = {
+						category = "backgrounds"
+						file = "new_dawn.dds"
+					}
+					colors = {
+						"beige"
+						"brown"
+						"null"
+						"null"
+					}
+				}
+			}
+			25 = {
+				set_country_flag = PHM_early_space_age
+				set_primitive_age = PHM_early_space_age
+				change_country_flag = {
+					icon = {
+						category = "special"
+						file = "primitive.dss"
+					}
+					background = {
+						category = "backgrounds"
+						file = "new_dawn.dds"
+					}
+					colors = {
+						"grey"
+						"dark_grey"
+						"null"
+						"null"
+					}
+				}
+			}
+		}
+	}
+}
+
+PHM_create_primitive_hive_empire = {
+	random_list = {
+		# Industrial Civilization
+		35 = {
+			PHM_create_late_primitive_hive_empire = yes
+		}
+		# Medieval Civilization
+		65 = {
+			PHM_create_early_primitive_hive_empire = yes
+		}
+	}
+}
+
+PHM_setup_primitive_hive_planet = {
+	set_owner = last_created_country
+	set_capital = yes
+	last_created_country = {
+		modify_species = {
+			species = this
+			#add_trait = trait_hive_mind
+		}
+		if = {
+			limit = {
+				has_country_flag = PHM_stone_age
+			}
+			prev = {
+				while = {
+					count = 4
+					create_pop = {
+						species = last_created
+					}
+				}
+				add_building = PHM_building_crude_dwellings
+				remove_building = building_colony_shelter
+			}
+		}
+		if = {
+			limit = {
+				has_country_flag = PHM_bronze_age
+			}
+			prev = {
+				while = {
+					count = 8
+					create_pop = {
+						species = last_created
+					}
+				}
+				add_building = PHM_building_primitive_hive_dwellings
+				add_building = PHM_building_central_node
+				remove_building = building_colony_shelter
+			}
+		}
+		if = {
+			limit = {
+				has_country_flag = PHM_iron_age
+			}
+			prev = {
+				while = {
+					count = 9
+					create_pop = {
+						species = last_created
+					}
+				}
+				add_building = PHM_building_primitive_hive_dwellings
+				add_building = PHM_building_central_node
+				remove_building = building_colony_shelter
+			}
+		}
+		if = {
+			limit = {
+				has_country_flag = PHM_late_medieval_age
+			}
+			prev = {
+				while = {
+					count = 10
+					create_pop = {
+						species = last_created
+					}
+				}
+				add_building = PHM_building_primitive_hive_dwellings
+				add_building = PHM_building_primitive_hive_dwellings
+				add_building = PHM_building_central_node
+				remove_building = building_colony_shelter
+			}
+		}
+		if = {
+			limit = {
+				has_country_flag = PHM_renaissance_age
+			}
+			prev = {
+				while = {
+					count = 12
+					create_pop = {
+						species = last_created
+					}
+				}
+				add_building = PHM_building_primitive_hive_dwellings
+				add_building = PHM_building_primitive_hive_dwellings
+				add_building = PHM_building_central_node
+				remove_building = building_colony_shelter
+			}
+		}
+		if = {
+			limit = {
+				has_country_flag = PHM_steam_age
+			}
+			prev = {
+				while = {
+					count = 16
+					create_pop = {
+						species = last_created
+					}
+				}
+				add_building = PHM_building_urban_hive_dwellings
+				add_building = PHM_building_primitive_hive_factory
+				add_building = PHM_building_primitive_hive_mine
+				add_building = PHM_building_central_node
+				remove_building = building_colony_shelter
+			}
+		}
+		if = {
+			limit = {
+				has_country_flag = PHM_industrial_age
+			}
+			prev = {
+				while = {
+					count = 22
+					create_pop = {
+						species = last_created
+					}
+				}
+				add_building = PHM_building_primitive_hive_farm
+				add_building = PHM_building_primitive_hive_factory
+				add_building = PHM_building_primitive_hive_mine
+				add_building = PHM_building_primitive_hive_power_plant
+				add_building = PHM_building_primitive_hive_capital
+				add_building = PHM_building_urban_hive_dwellings
+				remove_building = building_colony_shelter
+			}
+		}
+		if = {
+			limit = {
+				has_country_flag = PHM_machine_age
+			}
+			prev = {
+				while = {
+					count = 24
+					create_pop = {
+						species = last_created
+					}
+				}
+				add_building = PHM_building_primitive_hive_farm
+				add_building = PHM_building_primitive_hive_factory
+				add_building = PHM_building_primitive_hive_mine
+				add_building = PHM_building_primitive_hive_power_plant
+				add_building = PHM_building_primitive_hive_capital
+				add_building = PHM_building_urban_hive_dwellings
+				remove_building = building_colony_shelter
+			}
+		}
+		if = {
+			limit = {
+				has_country_flag = PHM_atomic_age
+			}
+			prev = {
+				while = {
+					count = 26
+					create_pop = {
+						species = last_created
+					}
+				}
+				add_building = PHM_building_primitive_hive_farm
+				add_building = PHM_building_primitive_hive_factory
+				add_building = PHM_building_primitive_hive_mine
+				add_building = PHM_building_primitive_hive_power_plant
+				add_building = PHM_building_primitive_hive_capital
+				add_building = PHM_building_urban_hive_dwellings
+				remove_building = building_colony_shelter
+			}
+		}
+		if = {
+			limit = {
+				has_country_flag = PHM_early_space_age
+			}
+			prev = {
+				while = {
+					count = 28
+					create_pop = {
+						species = last_created
+					}
+				}
+				add_building = PHM_building_primitive_hive_farm
+				add_building = PHM_building_primitive_hive_factory
+				add_building = PHM_building_primitive_hive_mine
+				add_building = PHM_building_primitive_hive_power_plant
+				add_building = PHM_building_primitive_hive_capital
+				add_building = PHM_building_urban_hive_dwellings
+				remove_building = building_colony_shelter
+			}
+		}
+	}
+	### FOR PC_HIVE
+	if = {
+		limit = {
+			is_planet_class = pc_hive
+		}
+		owner = { set_country_flag = PHM_hive_world }
+	}
+	if = {
+		limit = {
+			owner = { has_country_flag = PHM_hive_world }
+		}
+		PHM_setup_hive_world = yes
+	}
+	### blockers
+	if = {
+		limit = {
+			has_country_flag = PHM_industrial_age
+			has_country_flag = PHM_machine_age
+			has_country_flag = PHM_atomic_age
+			has_country_flag = PHM_early_space_age
+		}
+		PHM_create_primitive_hive_blockers = yes
+	}
+}
+
+### pc_hive specific setup additions ###
+PHM_setup_hive_world = {
+	change_pc = pc_hive 
+
+	modify_species = {
+		species = this
+		ideal_planet_class = pc_nuked
+		change_scoped_species = no
+	}
+
+	every_owned_pop = {
+		owner.capital_scope = { 
+			change_variable = {
+			which = SK_input_number
+			value = 1
+			}
+		}
+	}
+	SK_generate_random_percentage = yes
+
+	while = {
+		count = SK_output_number
+		random_owned_pop = {
+			limit = {
+				NOT = {
+					has_trait = trait_pc_hive_preference
+				}
+			}
+			change_species = last_created
+		}
+	}
+}
+	
+
+
+	### blockers
+PHM_create_primitive_hive_blockers = {
+		add_deposit = d_decrepit_dwellings
+		add_deposit = d_failing_infrastructure
+}
+
+	##########
+PHM_spawn_pre_sapients= {
+		if = {
+			limit = { has_modifier = hazardous_weather }
+			remove_modifier = hazardous_weather
+		}
+		if = {
+			limit = { has_modifier = unstable_tectonics }
+			remove_modifier = unstable_tectonics
+		}
+		if = {
+			limit = { has_modifier = asteroid_impacts }
+			remove_modifier = asteroid_impacts
+		}
+		if = {
+			limit = { has_modifier = wild_storms }
+			remove_modifier = wild_storms
+		}
+		if = {
+			limit = { has_modifier = low_gravity }
+			remove_modifier = low_gravity
+		}
+		if = {
+			limit = { has_modifier = high_gravity }
+			remove_modifier = high_gravity
+		}
+		if = {
+			limit = { has_modifier = damaged_ecology }
+			remove_modifier = damaged_ecology
+		}
+		set_planet_flag = upl_ongoing_planet
+		random_list = {
+			15 = {
+				create_species = {
+					name = random
+					class = "PRE_MAM"
+					portrait = random
+					traits = {
+						trait = random_presapient_trait
+						trait = trait_hive_mind
+					}
+					homeworld = FROM
+					sapient = no
+				}
+			}
+			15 = {
+				create_species = {
+					name = random
+					class = "PRE_REP"
+					portrait = random
+					traits = {
+						trait = random_presapient_trait
+						trait = trait_hive_mind
+					}
+					homeworld = FROM
+					sapient = no
+				}
+			}
+			15 = {
+				create_species = {
+					name = random
+					class = "PRE_AVI"
+					portrait = random
+					traits = {
+						trait = random_presapient_trait
+						trait = trait_hive_mind
+					}
+					homeworld = FROM
+					sapient = no
+				}
+			}
+			15 = {
+				create_species = {
+					name = random
+					class = "PRE_ART"
+					portrait = random
+					traits = {
+						trait = random_presapient_trait
+						trait = trait_hive_mind
+					}
+					homeworld = FROM
+					sapient = no
+				}
+			}
+			15 = {
+				create_species = {
+					name = random
+					class = "PRE_MOL"
+					portrait = random
+					traits = {
+						trait = random_presapient_trait
+						trait = trait_hive_mind
+					}
+					homeworld = FROM
+					sapient = no
+				}
+			}
+			15 = {
+				create_species = {
+					name = random
+					class = "PRE_FUN"
+					portrait = random
+					traits = {
+						trait = random_presapient_trait
+						trait = trait_hive_mind
+					}
+					homeworld = FROM
+					sapient = no
+				}
+			}
+		}
+		while = {
+			count = 3
+			create_pop = { species = last_created }
+		}
+	}
+
+
