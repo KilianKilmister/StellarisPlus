@@ -1,0 +1,11 @@
+# Add global variables here that will be available in all script files.
+# @something = 42
+# They can be overridden in each normal script file.
+
+#limits
+@max_List:_limit = 100
+@num_Object:_object_limit = 100
+
+#pseudo-enum
+
+@typeError:SKU_ExceededListLimit = 0

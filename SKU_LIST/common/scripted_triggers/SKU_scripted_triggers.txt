@@ -1,0 +1,50 @@
+#	Example:
+#
+#	example_trigger = {
+#		is_country_type = default
+#		num_communications > 0
+#	}
+#
+#
+#	In a script file:
+#
+#	trigger = {
+#		example_trigger = yes
+#	}
+#
+
+#NULL VARIABLES
+
+
+
+is_within_limit = {
+	not = { $value$ = $limit$ }
+	$max$ <= $limit$
+	$min$ >= $limit$
+}
+
+is_outside_limit = {
+	OR = {
+	$value$ = $limit$
+	$max$ >= $limit$
+	$min$ <= $limit$
+	}
+}
+
+SKUFLAG = {
+	switch = {
+		trigger 		= is_scope_type
+#	   	ambient_object	= {	$action|has$_ambient_object_flag = $flag$ }
+	   	country 		= { has_country_flag 			= $flag$ }
+	   	fleet 			= {	has_fleet_flag = 			$flag$ }
+	   	leader 			= {	has_leader_flag = 			$flag$ }
+	   	megastructure	= {	has_megastructure_flag =	$flag$ }
+	   	planet 			= {	has_planet_flag = 			$flag$ }
+	   	pop 			= {	has_pop_flag =				$flag$ }
+	   	#relation 		= {	has_relation_flag =			$flag$ }
+	   	ship 			= {	has_ship_flag = 			$flag$ }
+	   	star 			= {	has_star_flag = 			$flag$ }
+	    pop_faction 	= {	has_pop_faction_flag = 		$flag$ }
+	    species 		= {	has_species_flag = 			$flag$ }
+	}
+}
