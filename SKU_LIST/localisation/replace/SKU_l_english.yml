@@ -1,0 +1,47 @@
+﻿l_english:
+
+    edict_SKU_DEBUGGING:0 "SKU: DEBUGGING"
+    edict_SKU_DEBUGGING_desc:0 "SKU: select to open debugger"
+
+    #dev
+    #@SKU_type_$_desc:0 "CHANGE_ME"
+    #@SKU_type_$:0 "SKU: Pseudo-Enum"
+    #@num_$_desc:0 "CHANGE_ME"
+    #@num_$:0 "SKU: Limit"
+    assign_ID_desc:0 "SKU: Assing ID"
+    assign_ID:0 "SKU: Assing ID"
+    cycle_desc:0 "SKU: "
+    cycle:0 "SKU: "
+    error_type_desc:0 "SKU: "
+    error_type:0 "SKU: "
+    exceeded_list_limit_desc:0 "SKU: "
+    exceeded_list_limit:0 "SKU: "
+    is_outside_limit_desc:0 "SKU: "
+    is_outside_limit:0 "SKU: "
+    limit_desc:0 "SKU: "
+    limit:0 "SKU: "
+    max_desc:0 "SKU: "
+    max:0 "SKU: "
+    return_desc:0 "SKU: "
+    return:0 "SKU: "
+    SKU_FALLBACK_FLAG_desc:0 "SKU: "
+    SKU_FALLBACK_FLAG:0 "SKU: "
+    SKU_LIST_ERROR_desc:0 "SKU: "
+    SKU_LIST_ERROR:0 "SKU: "
+    string_desc:0 "SKU: "
+    string:0 "SKU: "
+    trigger_desc:0 "SKU: "
+    trigger:0 "SKU: "
+
+
+
+
+
+
+
+
+    #:0 "SKU: "
+    #:0 "SKU: "
+    #:0 "SKU: "
+    #:0 "SKU: "
+    #:0 "SKU: "

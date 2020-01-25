@@ -1,0 +1,52 @@
+SKU_DEBUGGING = {
+	length = 0
+	resources = {
+		category = campaigns
+		cost = {
+		}
+	}
+
+	potential = {
+
+	}
+
+	effect = {
+		random_owned_planet = {
+			create_archaeological_site = DEBUG
+		}
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+
+SKU_DEBUGGING_1 = {
+	length = 0
+	resources = {
+		category = campaigns
+		cost = {
+		}
+	}
+
+	potential = {
+
+	}
+
+	effect = {
+		every_owned_leader = { set_skill = 10 }
+		random_planet_within_border = {
+			limit = {
+				exists = archaeological_site
+			}
+			archaeological_site = {
+				add_stage_clues = 10
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
