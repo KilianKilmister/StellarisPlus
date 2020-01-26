@@ -11,8 +11,10 @@ SKU_DEBUGGING = {
 	}
 
 	effect = {
-		random_owned_planet = {
-			create_archaeological_site = DEBUG
+		capital_scope = {
+			planet_event = {
+				id = EXAMPLE.2
+			}
 		}
 	}
 

@@ -1,14 +1,12 @@
 namespace = EXAMPLE
 
-fleet_event = {
+planet_event = {
 	id = EXAMPLE.1
 	title = "DEBUG_EVENT"
 	desc = "DEBUG_EVENT.desc"
 	picture = GFX_evt_mining_station
 	show_sound = event_ship_bridge
 	location = from
-
-	archaeology = yes
 
 	is_triggered_only = yes
 
@@ -32,18 +30,48 @@ fleet_event = {
 			}
 		}
 	}
-	option = {
-		name = DEBUG_B
-		custom_tooltip = minor_artifacts_found
-		random_list = {
-			33 = {
-				owner = { add_resource = { minor_artifacts = 1 } }
+}
+
+planet_event = {
+	id =  EXAMPLE.2
+	hide_window = yes
+	trigger = {
+
+	}
+	is_triggered_only = yes
+	immediate = {
+		set_variable = { which = cycle value = 0 }
+		set_variable = { which = Y_ value = 0 }
+		set_variable = { which = A_ value = 0 }
+		set_variable = { which = B_ value = 0 }
+		set_variable = { which = C_ value = 0 }
+		set_variable = { which = D_ value = 0 }
+		set_variable = { which = E_ value = 0 }
+		set_variable = { which = X_ value = 0 }
+		set_planet_flag = LOOP
+
+		while = {
+			limit = {
+				has_planet_flag = LOOP
 			}
-			33 = {
-				owner = { add_resource = { minor_artifacts = 3 } }
+			change_variable = {
+				which = cycle
+				value = 1
 			}
-			33 = {
-				owner = { add_resource = { minor_artifacts = 5 } }
+			random_list = {
+				1 = { modifier = { factor = 0.5 check_variable = { which = intensity value > 2 } }
+					  change_variable = { which = intensity value =-1 } change_variable = { which = Y_ value = 1 } } #Y
+				1 = { change_variable = { which = intensity value = 0 } change_variable = { which = A_ value = 1 } } #1A_
+				1 = { change_variable = { which = intensity value = 1 } change_variable = { which = B_ value = 1 } } #2B_
+				1 = { change_variable = { which = intensity value = 2 } change_variable = { which = C_ value = 1 } } #3C_
+				1 = { change_variable = { which = intensity value = 3 } change_variable = { which = D_ value = 1 } } #4D_
+				1 = { change_variable = { which = intensity value = 4 } change_variable = { which = E_ value = 1 } } #5E_
+				0 = { modifier = { add = 1 check_variable = { which = intensity value > 4 } }
+				change_variable = { which = X_ value = 1 } remove_planet_flag = LOOP }
+			}
+			multiply_variable = {
+				which = intensity
+				value = 0.7
 			}
 		}
 	}

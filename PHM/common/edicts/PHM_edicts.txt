@@ -1,0 +1,24 @@
+SKU_DEBUGGING = {
+	length = 0
+	resources = {
+		category = campaigns
+		cost = {
+		}
+	}
+
+	potential = {
+
+	}
+
+	effect = {
+		capital_scope = {
+			planet_event = {
+				id = uplift.10010
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}

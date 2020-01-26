@@ -1,0 +1,102 @@
+##########################################################################
+# Decisions
+##########################################################################
+decision_select_home = {
+	resources = {
+		category = decisions
+		cost = {
+			influence = 50
+		}
+	}
+	
+	#potential = {
+	#	from = { has_event_chain = fate_to_be_decided_chain }
+	#	NOT = { has_planet_flag = selected_planet@from }
+	#	has_planet_flag = selectable_home@from
+	#	has_modifier = potential_home
+	#}
+
+	allow = {
+		from = { NOT = { has_point_of_interest = { poi = FATE_TO_BE_DECIDED.1 } } }
+		OR = {
+			conditional_tooltip = {
+				trigger = { from = { has_technology = tech_climate_restoration } }
+				is_moon = yes
+			}
+			conditional_tooltip = {
+				trigger = { from = { has_technology = tech_glandular_acclimation } }
+				habitability = { who = event_target:PHM_uplifted_hive value > 0.1 }
+			}
+			conditional_tooltip = {
+				trigger = { from = { has_technology = tech_terrestrial_sculpting } }
+				habitable_planet = yes
+			}
+			conditional_tooltip = {
+				trigger = { from = { NOR = { has_technology = tech_terrestrial_sculpting has_technology = tech_glandular_acclimation has_technology = tech_climate_restoration } } }
+				habitability = { who = event_target:PHM_uplifted_hive value > 0.6 }
+			}
+		}
+	}
+
+	effect = {
+		custom_tooltip = "select_planet"
+		hidden_effect = {
+			if = {
+				limit = { from = { has_technology = tech_climate_restoration } }
+				custom_tooltip = "select_planet_option_moon" #£[this.BoolIsMoon]£
+			}
+			if = {
+				limit = { from = { has_technology = tech_glandular_acclimation } }
+				custom_tooltip = "select_planet_option_gland_acc" #£[this.BoolGlandAcc]£
+			}
+			if = {
+				limit = { from = { has_technology = tech_terrestrial_sculpting } }
+				custom_tooltip = "select_planet_option_terr_sculp" #£[this.BoolTerrSculp]£
+			}
+			custom_tooltip = "select_planet_option_default" #£[this.BoolDefault]£
+			set_planet_flag = selected_planet@from
+			from = { remove_point_of_interest = FATE_TO_BE_DECIDED.1 }
+			enable_special_project = {
+				owner = from
+				name = FATE_TO_BE_DECIDED_CONFIRM_PLANET
+				location = root
+			}
+
+		}
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+decision_unselect_home = {
+	resources = {
+		category = decisions
+		cost = {
+			influence = 50
+		}
+	}
+	resources = {
+		category = decisions
+	}
+
+	potential = {
+		from = { has_special_project = FATE_TO_BE_DECIDED_CONFIRM
+				 NOT = { is_researching_special_project = FATE_TO_BE_DECIDED_CONFIRM } }
+		has_planet_flag = selected_planet@from
+	}
+
+	effect = {
+		custom_tooltip = decision_unselect_potential_home
+		hidden_effect = {
+			remove_planet_flag = potential_home@from
+			from = { remove_country_flag = potential_home_selected }
+			from = { remove_point_of_interest = selected_world }
+		}
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}

@@ -7,3 +7,65 @@
 # (eg Root or From.From).)
 # localization_key -> points to the localization key
 # that'll be used if trigger passes
+
+defined_text = {
+	name = BoolIsMoon
+	text = {
+		trigger = { is_moon = yes }
+		localization_key = trigger_yes
+
+	}
+	text = {
+		trigger = { is_moon = no }
+		localization_key = trigger_no
+	}
+}
+
+defined_text = {
+	name = BoolGlandAcc
+	text = {
+		trigger = {
+			habitability = {
+				who = event_target:PHM_uplifted_hive
+				value > 0.1
+			}
+		}
+		localization_key = trigger_yes
+
+	}
+	text = {
+		trigger = { always = yes }
+		localization_key = trigger_no
+	}
+}
+
+defined_text = {
+	name = BoolTerrSculp
+	text = {
+		trigger = { habitable_planet = yes }
+		localization_key = trigger_yes
+
+	}
+	text = {
+		trigger = { habitable_planet = no }
+		localization_key = trigger_no
+	}
+}
+
+defined_text = {
+	name = BoolDefault
+	text = {
+		trigger = {
+			habitability = {
+				who = event_target:PHM_uplifted_hive
+				value > 0.6
+			}
+		}
+		localization_key = trigger_yes
+
+	}
+	text = {
+		trigger = { always = yes }
+		localization_key = trigger_no
+	}
+}

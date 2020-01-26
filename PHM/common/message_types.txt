@@ -1,0 +1,9 @@
+
+message_type = {
+	key = "FATE_TO_BE_DESCIDED"
+	icon = "GFX_message_aborted_project"
+	icon_frame = 1
+
+	sound = "notification"
+	ping = "ping_notification_green"
+}
