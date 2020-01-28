@@ -17,4 +17,7 @@ on_uplift_completion = {
 on_pop_added = {
 	events = {
 	}
+	random_events = {
+
+	}
 }

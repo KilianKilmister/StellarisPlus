@@ -1,6 +1,6 @@
 namespace = EXAMPLE
 
-planet_event = {
+ship_event = {
 	id = EXAMPLE.1
 	title = "DEBUG_EVENT"
 	desc = "DEBUG_EVENT.desc"
@@ -13,6 +13,7 @@ planet_event = {
 
 
 	immediate = {
+		print_scope_effect = yes
 	}
 
 	option = {

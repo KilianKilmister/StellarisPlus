@@ -1,6 +1,41 @@
 
 special_project = {
 	key = "SURVEY_PLANET" #in loc get planet name
+	icon = "gfx/interface/icons/situation_log/situation_log_scanning_beam.dds"
+	event_chain = select_planet_chain
+	cost = 0
+	days_to_research = 30	#change
+	tech_department = society_technology
+	timelimit = -1
+	picture = GFX_evt_enigmatic_fortress #change
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+		#skill = 1
+	}
+
+
+	on_success = {
+		from = {
+			enable_special_project = {
+				owner = event_target:selector
+				name = CONFIRM_PLANET
+				location = THIS
+			}
+			event_target:selector = {
+				abort_special_project = {
+					location = prev
+					type = SURVEY_PLANET
+				}
+			}
+		}
+	}
+}
+special_project = {
+	key = "CONFIRM_PLANET" #in loc get planet name
+	icon = "gfx/interface/icons/situation_log/situation_log_tick.dds"
 	event_chain = select_planet_chain
 	cost = 0
 	days_to_research = 30
@@ -10,19 +45,57 @@ special_project = {
 	event_scope = planet_event
 
 	requirements = {
-		shipclass_science_ship = 1
-		leader = scientist
-		#skill = 1
 	}
 
 	on_success = {
-		
+			enable_special_project = {
+				owner = event_target:selector
+				name = FATE_TO_BE_DECIDED_GIVE_HOME
+				location = this
+			}
+		event_target:selector = {
+			abort_special_project = {
+				type = CONFIRM_PLANET
+			}
+			abort_special_project = {
+				type = SURVEY_PLANET
+			}
+			end_event_chain = select_planet_chain
+			remove_point_of_interest = FATE_TO_BE_DECIDED_SELECT_HOME_POI
+		}
 	}
 }
 
+
+
+special_project = {
+	key = "FATE_TO_BE_DECIDED_GIVE_HOME"
+	event_chain = "fate_to_be_decided_chain"
+	icon = "gfx/interface/icons/situation_log/situation_log_planet.dds"
+	cost = 0
+	days_to_research = 30
+	tech_department = society_technology
+	timelimit = -1
+	picture = GFX_evt_enigmatic_fortress #change
+
+	same_option_group_as = { FATE_TO_BE_DECIDED_SEND_OFF FATE_TO_BE_DECIDED_SELL }
+
+	event_scope = planet_event
+
+	requirements = {
+
+	}
+
+	on_success = {
+		ship_event = { id = leviathans.2113 }
+	}
+
+	on_fail = {	}
+}
 special_project = {
 	key = "FATE_TO_BE_DECIDED_EXHIBIT"
 	event_chain = "fate_to_be_decided_chain"
+	icon = "gfx/interface/icons/situation_log/situation_log_society.dds"
 	cost = 0
 	days_to_research = 30
 	tech_department = society_technology
@@ -45,6 +118,7 @@ special_project = {
 special_project = {
 	key = "FATE_TO_BE_DECIDED_STUDY_BIOLOGY"
 	event_chain = "fate_to_be_decided_chain"
+	icon = "gfx/interface/icons/situation_log/situation_log_society.dds"
 	cost = 0
 	days_to_research = 30
 	tech_department = society_technology
@@ -67,6 +141,7 @@ special_project = {
 special_project = {
 	key = "FATE_TO_BE_DECIDED_STUDY_MILITARY"
 	event_chain = "fate_to_be_decided_chain"
+	icon = "gfx/interface/icons/situation_log/situation_log_combat.dds"
 	cost = 0
 	days_to_research = 30
 	tech_department = society_technology
@@ -89,6 +164,7 @@ special_project = {
 special_project = {
 	key = "FATE_TO_BE_DECIDED_ASSIMILATE_FLESH"
 	event_chain = "fate_to_be_decided_chain"
+	icon = "gfx/interface/icons/situation_log/situation_log_society.dds"
 	cost = 0
 	days_to_research = 30
 	tech_department = society_technology
@@ -111,6 +187,7 @@ special_project = {
 special_project = {
 	key = "FATE_TO_BE_DECIDED_ASSIMILATE_SOUL"
 	event_chain = "fate_to_be_decided_chain"
+	icon = "gfx/interface/icons/situation_log/situation_log_society.dds"
 	cost = 0
 	days_to_research = 30
 	tech_department = society_technology
@@ -133,6 +210,7 @@ special_project = {
 special_project = {
 	key = "FATE_TO_BE_DECIDED_ASSIMILATE_METAL"
 	event_chain = "fate_to_be_decided_chain"
+	icon = "gfx/interface/icons/situation_log/situation_log_society.dds"
 	cost = 0
 	days_to_research = 30
 	tech_department = society_technology
@@ -155,6 +233,7 @@ special_project = {
 special_project = {
 	key = "FATE_TO_BE_DECIDED_SELL"
 	event_chain = "fate_to_be_decided_chain"
+	icon = "gfx/interface/icons/situation_log/situation_log_decision.dds"
 	cost = 0
 	days_to_research = 30
 	tech_department = society_technology
@@ -177,6 +256,7 @@ special_project = {
 special_project = {
 	key = "FATE_TO_BE_DECIDED_SEND_OFF"
 	event_chain = "fate_to_be_decided_chain"
+	icon = "gfx/interface/icons/situation_log/situation_log_decision.dds"
 	cost = 0
 	days_to_research = 30
 	tech_department = society_technology

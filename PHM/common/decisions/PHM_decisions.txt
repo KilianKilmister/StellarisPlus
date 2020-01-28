@@ -8,7 +8,7 @@ decision_select_home = {
 			influence = 50
 		}
 	}
-	
+
 	#potential = {
 	#	from = { has_event_chain = fate_to_be_decided_chain }
 	#	NOT = { has_planet_flag = selected_planet@from }
@@ -22,6 +22,7 @@ decision_select_home = {
 			conditional_tooltip = {
 				trigger = { from = { has_technology = tech_climate_restoration } }
 				is_moon = yes
+
 			}
 			conditional_tooltip = {
 				trigger = { from = { has_technology = tech_glandular_acclimation } }
@@ -37,7 +38,13 @@ decision_select_home = {
 			}
 		}
 	}
-
+											##################
+											##################
+											##################
+											################## investigate exclusive_trigger
+											##################
+											##################
+											##################
 	effect = {
 		custom_tooltip = "select_planet"
 		hidden_effect = {

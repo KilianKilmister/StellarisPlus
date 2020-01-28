@@ -1,0 +1,14 @@
+
+
+# The game will generate one on_building_X on_action for every station ship-size
+# Orbital stations will get the planet in FROM, space stations only get they building ship
+
+# This = construction ship
+# From = planet it is built on
+# Fires when construction is complete,
+# immediately before station is created
+on_building_corvette = {
+	events = {
+		EXAMPLE.1
+	}
+}

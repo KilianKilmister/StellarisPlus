@@ -1,16 +1,22 @@
 mark_potential_homes = {
 	every_planet = {
 		limit = {
-			solar_system = { OR = { is_within_borders_of = root any_neighbor_system = { OR = { is_within_borders_of = root is_neighbor_of = root } } } } #define range
+			is_surveyed = {
+				who = from.owner
+				status = yes
+			}
+			solar_system = {
+				OR = {
+					is_within_borders_of = from.owner any_neighbor_system = { OR = { is_within_borders_of = from.owner is_neighbor_of = from.owner } } } } #define range
 			OR =  { habitability = { who = event_target:PHM_uplifted_hive value > 0.6 }
-				AND = { root = { has_technology = tech_climate_restoration   } is_moon = yes is_within_borders_of = root }	 							#defing habitability
-				AND = { root = { has_technology = tech_glandular_acclimation } habitability = { who = event_target:PHM_uplifted_hive value > 0.1 } } 		 #
-				AND = { root = { has_technology = tech_terrestrial_sculpting } habitable_planet = yes } }
+				AND = { from.owner = { has_technology = tech_climate_restoration   } is_moon = yes is_within_borders_of = from.owner }	 							#defing habitability
+				AND = { from.owner = { has_technology = tech_glandular_acclimation } habitability = { who = event_target:PHM_uplifted_hive value > 0.1 } } 		 #
+				AND = { from.owner = { has_technology = tech_terrestrial_sculpting } habitable_planet = yes } }
 			OR =  { is_colony = no owner = { is_country_type = primitive } }
 			is_under_colonization = no
 		}
 		enable_special_project = {
-			owner = prev
+			owner = from.owner
 			name = SURVEY_PLANET
 			location = THIS
 		}

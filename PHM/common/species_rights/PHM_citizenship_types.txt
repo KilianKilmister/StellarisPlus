@@ -1,0 +1,20 @@
+# from = country
+# this = species
+
+citizenship_integrated_hive_mind = {
+	token = citizenship_integrated_hive_mind
+
+	potential = {
+		exists = from
+		from = {
+			NOT = { has_ethic = ethic_gestalt_consciousness }
+		}
+			has_trait = trait_hive_mind
+	}
+
+	allow = {
+	}
+	ai_will_do = {
+		factor = 100
+	}
+}

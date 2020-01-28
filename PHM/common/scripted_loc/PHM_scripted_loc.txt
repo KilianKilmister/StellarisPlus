@@ -9,51 +9,70 @@
 # that'll be used if trigger passes
 
 defined_text = {
-	name = BoolIsMoon
+	name = GetOptionM
 	text = {
-		trigger = { is_moon = yes }
-		localization_key = trigger_yes
+		trigger = { is_moon = yes fromfrom.owner = { has_technology = tech_climate_restoration } }
+		localization_key = OptionM_yes
 
 	}
 	text = {
-		trigger = { is_moon = no }
-		localization_key = trigger_no
+		trigger = { is_moon = no fromfrom.owner = { has_technology = tech_climate_restoration } }
+		localization_key = OptionM_no
+	}
+	text = {
+		trigger = { always = yes }
+		localization_key = ""
 	}
 }
 
 defined_text = {
-	name = BoolGlandAcc
+	name = GetOptionGA
 	text = {
 		trigger = {
 			habitability = {
 				who = event_target:PHM_uplifted_hive
 				value > 0.1
 			}
+			fromfrom.owner = { has_technology = tech_glandular_acclimation }
 		}
-		localization_key = trigger_yes
+		localization_key = OptionGA_yes
 
+	}
+	text = {
+		trigger = {
+			habitability = {
+				who = event_target:PHM_uplifted_hive
+				value <= 0.1
+			}
+			fromfrom.owner = { has_technology = tech_glandular_acclimation }
+		}
+		localization_key = OptionGA_no
 	}
 	text = {
 		trigger = { always = yes }
-		localization_key = trigger_no
+		localization_key = ""
 	}
 }
 
 defined_text = {
-	name = BoolTerrSculp
+	name = GetOptionTS
 	text = {
-		trigger = { habitable_planet = yes }
-		localization_key = trigger_yes
+		trigger = { habitable_planet = yes fromfrom.owner = { has_technology = tech_terrestrial_sculpting } }
+		localization_key = OptionTS_yes
 
 	}
 	text = {
-		trigger = { habitable_planet = no }
-		localization_key = trigger_no
+		trigger = { habitable_planet = no fromfrom.owner = { has_technology = tech_glandular_acclimation } }
+		localization_key = OptionTS_no
+	}
+	text = {
+		trigger = { always = yes }
+		localization_key = ""
 	}
 }
 
 defined_text = {
-	name = BoolDefault
+	name = GetOptionD
 	text = {
 		trigger = {
 			habitability = {
@@ -61,11 +80,11 @@ defined_text = {
 				value > 0.6
 			}
 		}
-		localization_key = trigger_yes
+		localization_key = OptionD_yes
 
 	}
 	text = {
 		trigger = { always = yes }
-		localization_key = trigger_no
+		localization_key = OptionD_no
 	}
 }

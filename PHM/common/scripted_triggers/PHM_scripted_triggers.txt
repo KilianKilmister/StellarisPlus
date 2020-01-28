@@ -1,0 +1,12 @@
+
+#Works in species scope, with a country in from
+is_lonely_hive_mind_pop = {
+	NOT = { from = { has_authority = auth_hive_mind } }
+	NOT = { has_citizenship_type = { type = citizenship_integrated_hive_mind } }
+	from = {
+		NOR = {
+			is_country_type = fallen_empire
+			is_country_type = awakened_fallen_empire
+		}
+	}
+}

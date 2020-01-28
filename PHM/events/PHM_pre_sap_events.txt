@@ -15,7 +15,7 @@ planet_event = {
 		if = {
 			limit = {
 				fromfrom = {
-					has_trait = PHM_trait_presapient_hive_mind
+					#has_trait = trait_hive_mind
 				}
 			}
 			planet_event = { id = uplift.10001 days = 5 }
@@ -68,20 +68,20 @@ planet_event = {
 
 	trigger = {
 		any_pop = {
-			has_trait = trait_uplifted
-			has_trait = PHM_trait_presapient_hive_mind
-			NOT = {
-				has_trait = trait_hive_mind
-			}
+			has_trait = trait_hive_mind
 		}
 	}
 
 	immediate = {
 		every_owned_pop = {
-			limit = { has_trait = PHM_trait_presapient_hive_mind NOT = { has_pop_flag = upl_ethic_spimat } }
+			limit = { is_same_species = fromfromfrom NOT = { has_pop_flag = upl_ethic_spimat } }
 			pop_change_ethic = "ethic_gestalt_consciousness"
 			set_pop_flag = upl_ethic_spimat
-			set_pop_flag = upl_hive_minded
+			modify_species = {
+				add_trait = trait_hive_mind
+				add_traits_at_start_of_list = yes
+			}
+			change_dominant_species = { }
 
 		}
 		if = {
@@ -94,9 +94,6 @@ planet_event = {
 			every_owned_pop = {
 				#add propper hive mind trait
 				limit = { has_trait = trait_uplifted has_trait = PHM_trait_presapient_hive_mind has_pop_flag = upl_hive_minded }
-				modify_species = {
-					add_trait = trait_hive_mind
-				}
 				remove_pop_flag = upl_hive_minded
 				set_pop_flag = PHM_uplifted_hive
 			}
@@ -141,57 +138,49 @@ planet_event = {	#prompt for non_hive owner
 		hidden_effect = {
 			#specify what can be done here based on triggered_desc
 			owner = {
-				if = {
-					limit = { NOR = { has_ethic = ethic_xenophobe has_ethic = ethic_fanatic_xenophobe } }
-					begin_event_chain = {
-						event_chain = select_planet_chain
-					}
-					mark_potential_homes = yes
-					set_country_flag = is_selecting_home
-				}
 
-				if = {
-					limit = { NOR = { has_ethic = ethic_xenophile has_ethic = ethic_fanatic_xenophile } }
-					enable_special_project = { #exhibit
-						name = FATE_TO_BE_DECIDED_EXHIBIT
-						location = capital_scope
-					}
-				}
-				if = {
-					limit = { has_ethic = ethic_materialist has_ethic = ethic_fanatic_materialist }
-					enable_special_project = { #study biology
-						name = FATE_TO_BE_DECIDED_STUDY_BIOLOGY
-						location = capital_scope
-					}
-				}
-				if = {
-					limit = { has_ethic = ethic_militarist has_ethic = ethic_fanatic_militarist }
-					enable_special_project = { #study military
-						name = FATE_TO_BE_DECIDED_STUDY_MILITARY
-						location = capital_scope
-					}
-				}
-				if = {
-					limit = { has_ascension_perk = ap_evolutionary_mastery }
-					enable_special_project = { #assimilate
-						name = FATE_TO_BE_DECIDED_ASSIMILATE_FLESH
-						location = capital_scope
-					}
-				}
-				if = {
-					limit = { has_ascension_perk = ap_synthetic_evolution }
-					enable_special_project = { #assimilate
-						name = FATE_TO_BE_DECIDED_ASSIMILATE_SOUL
-						location = capital_scope
-					}
-				}
-				if = {
-					limit = { has_ascension_perk = ap_transcendence }
-					enable_special_project = { #assimilate
-						name = FATE_TO_BE_DECIDED_ASSIMILATE_METAL
-						location = capital_scope
-					}
-				}
+				if = {																					# Enslave
+				limit = { NOR = { has_ethic = ethic_xenophile has_ethic = ethic_fanatic_xenophile } }	#
+					enable_special_project = { #exhibit													#
+						name = FATE_TO_BE_DECIDED_EXHIBIT												#
+						location = capital_scope														#
+					}																					#
+				}																						#
+				if = {																					#
+					limit = { has_ethic = ethic_materialist has_ethic = ethic_fanatic_materialist }		#
+					enable_special_project = { #study biology											#
+						name = FATE_TO_BE_DECIDED_STUDY_BIOLOGY											#
+						location = capital_scope														#
+					}																					#
+				}																						#
+				if = {																					#
+					limit = { has_ethic = ethic_militarist has_ethic = ethic_fanatic_militarist }		#
+					enable_special_project = { #study military											#
+						name = FATE_TO_BE_DECIDED_STUDY_MILITARY										#
+						location = capital_scope														#
+					}																					#
+				}																						#
+				if = {															# ASSIMILATE
+					limit = { has_ascension_perk = ap_evolutionary_mastery }	#
+					enable_special_project = { #assimilate						#
+					name = FATE_TO_BE_DECIDED_ASSIMILATE_FLESH					#
+						location = capital_scope								#
+					}															#
+				}																#
+				if = {															#
+					limit = { has_ascension_perk = ap_synthetic_evolution }		#
+					enable_special_project = { #assimilate						#
+						name = FATE_TO_BE_DECIDED_ASSIMILATE_SOUL				#
+						location = capital_scope								#
+					}															#
+				}																#
+				if = {															#
+					limit = { has_ascension_perk = ap_transcendence }			#
+					enable_special_project = { #assimilate						#
+						name = FATE_TO_BE_DECIDED_ASSIMILATE_METAL				#
+						location = capital_scope								#
+					}															#
+				}																#
 				if = {
 					limit = { NOR = { has_ethic = ethic_xenophile has_ethic = ethic_fanatic_xenophile } }
 					enable_special_project = { #sell
@@ -203,6 +192,22 @@ planet_event = {	#prompt for non_hive owner
 					limit = { NOR = { has_ethic = ethic_xenophobe has_ethic = ethic_fanatic_xenophobe } }
 					enable_special_project = { #send_off
 						name = FATE_TO_BE_DECIDED_SEND_OFF
+						location = capital_scope
+					}
+				}
+
+				if = {
+					limit = { NOR = { has_ethic = ethic_xenophobe has_ethic = ethic_fanatic_xenophobe } }
+					begin_event_chain = {
+						event_chain = select_planet_chain
+						target = capital_scope
+					}
+					save_event_target_as = selector
+					mark_potential_homes = yes
+					create_point_of_interest = {
+						id = FATE_TO_BE_DECIDED_SELECT_HOME_POI
+						name = FATE_TO_BE_DECIDED_SELECT_HOME_POI
+						event_chain = fate_to_be_decided_chain
 						location = capital_scope
 					}
 				}
@@ -246,7 +251,7 @@ country_event = { #gateway event for special projects
 
 
 
-#gateway to mishap
+#gatekeeper to mishap
 planet_event = {
 	id = uplift.10012
 	hide_window = yes
@@ -298,7 +303,7 @@ planet_event = {
 		}
 	}
 }
-
+#mishaps (add conditional desc for intensity and stuff)
 planet_event = {
 	id = uplift.10013
 	title = "uplift.10013.name"

@@ -7,10 +7,10 @@
 # event_chain_chainnkey_desc, a description to show in the situation log.
 
 fate_to_be_decided_chain = {
-	icon = "gfx/interface/icons/situation_log/situation_log_main_quest.dds"
+	icon = "gfx/interface/icons/situation_log/situation_log_decision.dds"
 	picture = GFX_evt_alien_nature
 }
 select_planet_chain = {
-	icon = "gfx/interface/icons/situation_log/situation_log_main_quest.dds"
+	icon = "gfx/interface/icons/situation_log/situation_log_planet.dds"
 	picture = GFX_evt_alien_nature
 }
